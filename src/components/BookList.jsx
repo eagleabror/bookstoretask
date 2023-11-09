@@ -29,7 +29,7 @@ const style = {
 
 const lableStyle = {
    position: 'realitive',
-   top: "0.5rem"
+   top: ".5rem"
 }
 
 const BookList = () => {
@@ -91,6 +91,7 @@ const BookList = () => {
                 const bookData = { key: key, sign: secret }
 
                 const response = await AuthService.bookCreate(bookData, keys)
+                setOpen(false)
                 dispatch(addDataSucces(response))
                 console.log(response)
                 // console.log(keys)
@@ -182,7 +183,7 @@ const BookList = () => {
                         onClose={handleClose}
                         aria-labelledby="modal-modal-title"
                         aria-describedby="modal-modal-description"
-                        sx={{ maxWidth: 345, position: "ralitive", margin: "auto" }}
+                        sx={{ maxWidth: 345, position: "realitive", margin: "auto" }}
                         disableScrollLock
                         enableScroll
                     >
@@ -193,12 +194,13 @@ const BookList = () => {
                                     justifyContent="space-between"
                                     alignItems="center"
                                     spacing={2}
-                                    p={0}
+                                    pt={2}
+                                    sx={lableStyle}
                                 >
                                     <Typography>Create a book</Typography>
-                                    <Button onClick={handleClose}><img src={closeSvg} alt="" /></Button>
+                                    <Button onClick={handleClose} p={0}><img src={closeSvg} alt="" /></Button>
                                 </Stack>
-                                <Grid container spacing={1} >
+                                <Grid>
                                     <Grid item xs={12} pt={0}>
                                         <InputLabel shrink htmlFor="isbn" sx={lableStyle}>
                                             Isbn
@@ -274,6 +276,7 @@ const BookList = () => {
                                             onBlur={formik.handleBlur}
                                             onChange={formik.handleChange}
                                             variant="outlined"
+                                            
                                         />
                                     </Grid>
                                     <Grid item xs={12} pt={0}>
@@ -292,15 +295,16 @@ const BookList = () => {
                                         />
                                     </Grid>
                                 </Grid>
-                                <Grid container spacing={2} columns={16}>
+                                <Grid container spacing={.5} columns={16}>
                                     <Grid item xs={8} pt={0}>
                                         <Button
-                                            type="submit"
+                                            // type="submit"
                                             fullWidth
-                                            variant="contained"
-                                            sx={{ mt: 3, mb: 2, bgcolor: "#6200EE" }}
+                                            variant="outlined"
+                                            sx={{ mt: 3, mb: 2, color: "#6200EE", border: "1px solid #6200EE" }}
+                                            onClick={handleClose}
                                         >
-                                            Submit
+                                            Close
                                         </Button>
                                     </Grid>
                                     <Grid item xs={8}>

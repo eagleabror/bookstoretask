@@ -16,6 +16,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import md5 from 'md5';
 import { signUserFailure, signUserStart, signUserSuccess } from '../slice/auth';
 import AuthService from '../service/auth';
+import { useFormik } from 'formik';
+import * as Yup from 'yup'
 
 const defaultTheme = createTheme();
 
@@ -29,7 +31,16 @@ export default function Signup() {
 
   const [signError, setSignError] = useState(false)
 
-  
+  const formik = useFormik({
+    initialValues: {
+      key: '',
+      sign: ''
+    },
+    validationSchema: {
+      key: Yup.string()
+        .required
+    }
+  })
 
 
   const handleSubmit = async (e) => {
