@@ -1,5 +1,5 @@
 import React from "react";
-// import { IconPageNotFound } from "../icons";
+import Found from "../icons/notFound.svg";
 import { Box, Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { styled } from "@mui/system";
@@ -22,7 +22,7 @@ const NotFound = () => {
   
   return (
     <Main>
-        {/* <IconPageNotFound /> */}
+        <Found />
       <Box sx={{ display: "flex", flexDirection: "row", gap: "20px" }}>
         <Button onClick={() => navigate("/")} variant="contained">
           Go Home Page

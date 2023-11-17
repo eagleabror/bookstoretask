@@ -3,7 +3,6 @@ import axios from './api'
 const AuthService = {
 	async userRegister(user) {
 		const {data} = await axios.post('/signup', user)
-        console.log(data)
 		return data
 	},
 	async userLogin(user) {
@@ -33,8 +32,17 @@ const AuthService = {
 		})
 		return data
 	},
-	async bookEdit(keys) {
-		const {data} = await axios.patch('/books/:id', {
+	async bookDelete(keys, id) {
+		const {data} = await axios.delete(`/books/${id}`, {
+			headers:{
+				Key: keys.key,
+				Sign: keys.sign
+			}
+		})
+		return data
+	},
+	async bookEdit(keys, id, edit) {
+		const {data} = await axios.patch(`/books/${id}`, edit, {
 			headers:{
 				Key: keys.key,
 				Sign: keys.sign

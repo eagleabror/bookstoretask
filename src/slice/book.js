@@ -9,8 +9,14 @@ const initialState = {
     addDataFailur: null, 
     dataFailur: false,
     error: null,
-    
-    // localStorage
+    deleteStart: false,
+    deleteSucces: false,
+    deleteError: null,
+    deleteData: [],
+    editStart: false,
+    editSucces: false,
+    editError: null,
+    editData: [],
 }
 
 export const bookSlice = createSlice({
@@ -28,9 +34,6 @@ export const bookSlice = createSlice({
             state.addStart = false
             state.dataFailur = false
             state.data = action.payload
-            // setItem('token', action.payload.token)
-            // localStorage.setItem('Key', action.payload.key)
-            // localStorage.setItem('Sign', action.payload.secret)
         },
         addDataStart: (state) => {
             state.addStart = true
@@ -53,9 +56,41 @@ export const bookSlice = createSlice({
             state.isLoading = false
             state.dataFailur = true
             state.error = action.payload
+        },
+        deleteDataStart : (state) => {
+            state.isLoading = false
+            state.deleteStart = true
+        },
+        deleteDataSucces : (state, action) => {
+            state.isLoading = false
+            state.deleteStart = false
+            state.deleteSucces = true
+            state.deleteData = action.payload
+        },
+        deleteDataError : (state, action) => {
+            state.isLoading = false
+            state.deleteStart = false
+            state.deleteSucces = false
+            state.deleteError = action.payload
+        },
+        editDataStart : (state) => {
+            state.isLoading = false
+            state.editStart = true
+        },
+        editDataSucces : (state, action) => {
+            state.isLoading = false
+            state.editStart = false
+            state.editSucces = true
+            state.editData = action.payload
+        },
+        editDataError : (state, action) => {
+            state.isLoading = false
+            state.editStart = false
+            state.editSucces = false
+            state.editError = action.payload
         }
     }
 }) 
 
-export const { startGetData, getDataSucces, getDataFailure, addDataStart, addDataSucces, addDataFailur  } = bookSlice.actions
+export const { startGetData, getDataSucces, getDataFailure, addDataStart, addDataSucces, addDataFailur, deleteDataStart, deleteDataSucces, deleteDataError, editDataStart, editDataSucces, editDataError  } = bookSlice.actions
 export default bookSlice.reducer

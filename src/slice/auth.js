@@ -6,7 +6,6 @@ const initialState = {
     loginUserFailur: false,
     error: null,
     user: [],
-    // localStorage
 }
 
 export const authSlice = createSlice({
@@ -22,7 +21,6 @@ export const authSlice = createSlice({
             state.loggedIn = true
             state.loginUserFailur = false
             state.user = action.payload
-            // setItem('token', action.payload.token)
             localStorage.setItem('Key', action.payload.key)
             localStorage.setItem('Sign', action.payload.secret)
         },
